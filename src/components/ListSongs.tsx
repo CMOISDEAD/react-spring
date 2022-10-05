@@ -1,20 +1,24 @@
 import Link from "next/link";
 import { SongCard } from "./Song";
-import { Song } from "./index";
-// import { songs } from "../utils/songs";
+import { Artist, Song } from "./index";
 import { SectionHeader } from "./SectionHeader";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 export const ListSongs = (): any => {
   const [songs, setSongs] = useState<Song[]>([]);
+  const [artists, setArtist] = useState<Artist[]>([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/songs")
+      .get(`http://${process.env.NEXT_PUBLIC_SERVER}/songs`)
       .then((res) => {
         setSongs(res.data);
       })
+      .catch((err) => console.log(err));
+    axios
+      .get(`http://${process.env.NEXT_PUBLIC_SERVER}/artist`)
+      .then((res) => setArtist(res.data))
       .catch((err) => console.log(err));
   }, []);
 
@@ -36,6 +40,7 @@ export const ListSongs = (): any => {
                   duration={song.duration}
                   year={song.year}
                   yt_url={song.yt_url}
+                  artist_id={undefined}
                 />
               );
             })}
@@ -45,16 +50,13 @@ export const ListSongs = (): any => {
           <SectionHeader title="Top Artist" subtitle="See All" />
           <div className="bg-[#161616] rounded-md mt-2 w-full h-fit px-10 py-2">
             <div className="flex flex-col justify-start content-start items-start">
-              {songs.map((song, i) => {
+              {artists.map((artist, i) => {
                 return (
-                  <Link href={`/music/artist/${song.artist}`} key={i}>
-                    <div className="font-bold inline-flex py-2">
+                  <Link href={`/music/artist/${artist.id}`} key={i}>
+                    <div className="font-bold inline-flex py-2 cursor-pointer">
                       <div className="number mr-5 self-center">{i + 1}</div>
                       <div className="data">
-                        <div className="name">{song.artist}</div>
-                        <div className="description text-sm text-gray-500">
-                          {song.name}
-                        </div>
+                        <div className="name">{artist.name}</div>
                       </div>
                     </div>
                   </Link>

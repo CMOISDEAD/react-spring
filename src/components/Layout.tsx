@@ -10,7 +10,6 @@ export const Layout: NextPage<Props> = ({ children }) => {
     <>
       <Navbar />
       <div className="container mx-auto">{children}</div>
-      {/* <Player /> */}
     </>
   );
 };

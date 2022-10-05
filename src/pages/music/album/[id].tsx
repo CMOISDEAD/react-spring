@@ -25,7 +25,7 @@ const AlbumView: NextPage<Props> = ({ album }) => {
           <p className="text-6xl font-bold py-24">{album.name}</p>
           <Link
             className="text-sm font-bold"
-            href={`/music/artist/${album.artist}`}
+            href={`/music/artist/${album.artist_id}`}
           >
             {album.artist}
           </Link>
@@ -76,7 +76,7 @@ const AlbumView: NextPage<Props> = ({ album }) => {
 };
 
 export const getStaticPaths = async () => {
-  const res = await fetch("http://localhost:8080/allAlbums");
+  const res = await fetch(`http://${process.env.NEXT_PUBLIC_SERVER}/allAlbums`);
   const albums = await res.json();
 
   const paths = albums.map((album: string) => ({
@@ -100,7 +100,10 @@ interface Params {
 }
 
 export const getStaticProps = async ({ params }: Params) => {
-  const res = await axios.post("http://localhost:8080/getAlbum", params.id);
+  const res = await axios.post(
+    `http://${process.env.NEXT_PUBLIC_SERVER}/getAlbum`,
+    params.id
+  );
   const album = await res.data;
   return {
     props: {

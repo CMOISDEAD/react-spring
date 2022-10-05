@@ -5,19 +5,11 @@ import { Album } from "./index";
 import { SectionHeader } from "./SectionHeader";
 
 export const Carousell = (): any => {
-  const [albums, setAlbums] = useState<Album[]>([
-    {
-      id: "0",
-      image: "https://wallpapercave.com/wp/wp3694462.jpg",
-      name: "The Marshall Mathers LP",
-      artist: "Eminem",
-      duration: 10,
-    },
-  ]);
+  const [albums, setAlbums] = useState<Album[]>([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/albums")
+      .get(`http://${process.env.NEXT_PUBLIC_SERVER}/albums`)
       .then((res) => {
         setAlbums(res.data);
       })
@@ -37,6 +29,8 @@ export const Carousell = (): any => {
               artist={album.artist}
               duration={album.duration}
               key={i}
+              songs={[]}
+              artist_id={undefined}
             />
           );
         })}

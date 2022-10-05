@@ -24,18 +24,28 @@ export const Navbar = (): any => {
         <a className="mx-4 hover:text-zinc-300" href="/browse">
           Browse
         </a>
-        <a className="mx-4 hover:text-zinc-300" href="/radio">
+        <a className="mx-4 hover:text-zinc-300 cursor-not-allowed" href="/radio">
           Radio
         </a>
       </div>
-      <div className="flex flex-row justify-around content-center items-center rounded border border-zinc-900 bg-zinc-800 px-2">
-        <AiOutlineSearch />
-        <input
-          className="rounded-lg p-1 bg-zinc-800"
-          type="text"
-          placeholder="Search"
-        />
-        <FaMicrophone />
+      <div className="flex flex-row justify-around content-center items-center">
+        <div className="auth">
+          <Link href="/login">
+            <p className="mx-5 cursor-pointer text-sm">Login</p>
+          </Link>
+          <Link href="/login">
+            <p className="mx-5 cursor-pointer text-sm">Register</p>
+          </Link>
+        </div>
+        <div className="search flex flex-row justify-around content-center items-center rounded border border-zinc-900 bg-zinc-800 px-2 hover:border-zinc-500">
+          <AiOutlineSearch />
+          <input
+            className="rounded-lg p-1 bg-zinc-800 focus:outline-none"
+            type="text"
+            placeholder="Search"
+          />
+          <FaMicrophone />
+        </div>
       </div>
     </div>
   );
