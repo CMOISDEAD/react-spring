@@ -3,6 +3,8 @@ import Head from "next/head";
 import { Carousell } from "../components/Carousell";
 import { ListSongs } from "../components/ListSongs";
 import { Layout } from "../components/Layout";
+import { wrapper } from "../store/store";
+// import { setAuthState } from "../store/authSlice";
 
 const Home: NextPage = () => {
   return (
@@ -17,5 +19,17 @@ const Home: NextPage = () => {
     </Layout>
   );
 };
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) =>
+    async ({}) => {
+      console.log("State on server", store.getState());
+      return {
+        props: {
+          authState: false,
+        },
+      };
+    }
+);
 
 export default Home;

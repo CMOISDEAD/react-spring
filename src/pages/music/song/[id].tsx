@@ -19,6 +19,21 @@ const SongView: NextPage<Props> = ({ song }) => {
           <p className="text-sm cursor-pointer">{song.artist}</p>
         </Link>
       </div>
+      <div className="flex flex-row justify-start items-center content-center gap-4">
+        <img
+          src={song.cover}
+          alt={song.name}
+          className="object-cover"
+          width={150}
+          height={150}
+        />
+        <div className="info gap-4">
+          <div className="text-xl font-bold capitalize">{song.album}</div>
+          <div className="text-sm italic">
+            {song.artist} - {song.year}
+          </div>
+        </div>
+      </div>
     </Layout>
   );
 };

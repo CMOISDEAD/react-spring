@@ -1,12 +1,18 @@
 import axios from "axios";
 import Link from "next/link";
 import { useState } from "react";
+import { setAuthState } from "../store/authSlice";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 
 export default function Login() {
   const [user, setUser] = useState({
     username: "",
     password: "",
   });
+
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault;
@@ -20,8 +26,19 @@ export default function Login() {
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault;
     axios
-      .post("http://localhost:8080/login", user)
-      .then((res) => console.log(res.data))
+      .post(`http://${process.env.NEXT_PUBLIC_SERVER}/login`, user)
+      .then((res) => {
+        console.log(res.data);
+        dispatch(
+          setAuthState({
+            authState: true,
+            username: res.data.username,
+            playlist: res.data.playlist,
+            isAdmin: res.data.isAdmin,
+          })
+        );
+        router.push("/");
+      })
       .catch((err) => console.log(err));
   };
 

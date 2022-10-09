@@ -2,8 +2,13 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { GiLuchador as Logo } from "react-icons/gi";
 import { FaMicrophone } from "react-icons/fa";
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { selectState } from "../store/authSlice";
+import { AiOutlineUser } from "react-icons/ai";
 
 export const Navbar = (): any => {
+  const user = useSelector(selectState);
+
   return (
     <div className="navbar flex flex-row justify-between items-center content-center p-5">
       <div className="inline-flex">
@@ -24,19 +29,32 @@ export const Navbar = (): any => {
         <a className="mx-4 hover:text-zinc-300" href="/browse">
           Browse
         </a>
-        <a className="mx-4 hover:text-zinc-300 cursor-not-allowed" href="/radio">
+        <a
+          className="mx-4 hover:text-zinc-300 cursor-not-allowed"
+          href="/radio"
+        >
           Radio
         </a>
       </div>
       <div className="flex flex-row justify-around content-center items-center">
-        <div className="auth">
-          <Link href="/login">
-            <p className="mx-5 cursor-pointer text-sm">Login</p>
-          </Link>
-          <Link href="/login">
-            <p className="mx-5 cursor-pointer text-sm">Register</p>
-          </Link>
-        </div>
+        {!user.authState ? (
+          <div className="auth">
+            <Link href="/login">
+              <p className="mx-5 cursor-pointer text-sm">Login</p>
+            </Link>
+            <Link href="/login">
+              <p className="mx-5 cursor-pointer text-sm">Register</p>
+            </Link>
+          </div>
+        ) : (
+          <div className="mx-2 inline-flex justify-center items-center content-center">
+            <AiOutlineUser />
+            <Link href={`/user/${user.username}`}>
+              <p className="font-bold ml-2">{user.username}</p>
+            </Link>
+          </div>
+        )}
+
         <div className="search flex flex-row justify-around content-center items-center rounded border border-zinc-900 bg-zinc-800 px-2 hover:border-zinc-500">
           <AiOutlineSearch />
           <input
