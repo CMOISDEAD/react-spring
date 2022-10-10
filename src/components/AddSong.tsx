@@ -21,7 +21,6 @@ export const AddSong = () => {
   const [artists, setArtist] = useState<Artist[]>([]);
   const [sArtist, setSArtist] = useState<Artist>();
   const [albums, setAlbums] = useState<Album[]>([]);
-  const [sAlbum, setSAlbum] = useState<Album>();
 
   useEffect(() => {
     axios
@@ -59,13 +58,14 @@ export const AddSong = () => {
     const value: Album = e.target.value as Album;
     setSong({
       ...song,
+      cover: value.image,
       album: value.name,
     });
-    setSAlbum(value);
   };
 
   const handleAdd = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    console.log(song);
     axios
       .post(`http://${process.env.NEXT_PUBLIC_SERVER}/addSong`, song)
       .then((res) => console.log(res))

@@ -4,15 +4,17 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Artist } from "./index";
+import { Artist, Album } from "./index";
 
 export const AddAlbum = () => {
-  const [album, setAlbum] = useState({
+  const [album, setAlbum] = useState<Album>({
+    id: "",
+    image: "",
     name: "",
     artist: "",
     artist_id: "",
-    image: "",
     duration: "",
+    songs: [],
   });
   const [artists, setArtist] = useState<Artist[]>([]);
   const [sArtist, setSArtist] = useState<Artist>();
@@ -33,22 +35,19 @@ export const AddAlbum = () => {
     });
   };
 
-  const handleArtist = (e: SelectChangeEvent) => {
+  const handleArtist = (e: SelectChangeEvent<Artist>) => {
     e.preventDefault();
-    const target = e.target as HTMLInputElement;
+    const value = e.target.value as Artist;
     setAlbum({
       ...album,
-      [target.name]: target.value as string,
+      artist: value.name as string,
+      artist_id: value.id as string,
     });
-    setSArtist(artists.find((artist) => artist.name == target.value));
+    setSArtist(value);
   };
 
   const handleAdd = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setAlbum({
-      ...album,
-      artist_id: sArtist.id, // FIX: undefined???
-    });
     axios
       .post(`http://${process.env.NEXT_PUBLIC_SERVER}/addAlbum`, album)
       .then((res) => console.log(res))
@@ -73,19 +72,19 @@ export const AddAlbum = () => {
               className="w-fit rounded-md object-cover"
             />
           )}
-          <InputLabel id="album-select-label" className="text-white">
+          <InputLabel id="artist-select-label" className="text-white">
             Artist
           </InputLabel>
           <Select
-            labelId="album-select-label"
-            id="album-select"
+            labelId="artist-select-label"
+            id="artist-select"
             label="artist"
             onChange={handleArtist}
             className="w-full text-white border-white"
           >
             {artists.map((artist, i) => {
               return (
-                <MenuItem value={artist.name} key={i}>
+                <MenuItem value={artist} key={i}>
                   {artist.name}
                 </MenuItem>
               );

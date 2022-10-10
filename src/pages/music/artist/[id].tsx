@@ -10,6 +10,7 @@ import {
 import { FiDisc } from "react-icons/fi";
 import axios from "axios";
 import Head from "next/head";
+import { Cover } from "../../../components/Cover";
 
 interface Props {
   artist: Artist;
@@ -36,6 +37,25 @@ const ArtistView: NextPage<Props> = ({ artist }) => {
         <AiOutlineHeart className=" hover:text-stone-400" />
         <AiOutlineEllipsis className=" hover:text-stone-400" />
       </div>
+        <div className="mt-2 mb-4">
+       <p className="text-2xl font-bold capitalize pb-3">{artist.name} albums</p> 
+      <div className="carousell flex flex-row justify-start content-center">
+        {artist.albums.map((album, i) => {
+          return (
+            <Cover
+              key={i}
+              id={album.id}
+              name={album.name}
+              artist={artist.name}
+              image={album.image}
+              songs={artist.songs}
+              artist_id={artist.id}
+              duration={album.duration}
+            />
+          );
+        })}
+      </div>
+      </div>
       <div className="songs-list">
         <div className="indicator flex flex-row justify-between content-center items-center text-sm border-b pb-2 uppercase">
           <div className="inline-flex content-center items-center">
@@ -57,7 +77,7 @@ const ArtistView: NextPage<Props> = ({ artist }) => {
                 key={i}
               >
                 <div className="inline-flex items-center content-center">
-                  <p className="mr-5 text-stone-400">{i}</p>
+                  <p className="mr-5 text-stone-400">{i + 1}</p>
                   <p className="text-start">
                     {song.name} <br />{" "}
                     <span className="text-sm text-stone-400">
@@ -71,7 +91,6 @@ const ArtistView: NextPage<Props> = ({ artist }) => {
           })}
         </div>
       </div>
-      <img src="http://tracking.musixmatch.com/t1.0/AMa6hJCIEzn1v8RuXW" />
     </Layout>
   );
 };
