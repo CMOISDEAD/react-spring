@@ -28,7 +28,6 @@ export default function Login() {
     axios
       .post(`http://${process.env.NEXT_PUBLIC_SERVER}/login`, user)
       .then((res) => {
-        console.log(res.data);
         dispatch(
           setAuthState({
             authState: true,
@@ -39,7 +38,10 @@ export default function Login() {
         );
         router.push("/");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        alert("Usuarion no existe");
+      });
   };
 
   return (

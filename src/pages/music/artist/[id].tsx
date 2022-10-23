@@ -11,6 +11,7 @@ import { FiDisc } from "react-icons/fi";
 import axios from "axios";
 import Head from "next/head";
 import { Cover } from "../../../components/Cover";
+import Link from "next/link";
 
 interface Props {
   artist: Artist;
@@ -37,24 +38,26 @@ const ArtistView: NextPage<Props> = ({ artist }) => {
         <AiOutlineHeart className=" hover:text-stone-400" />
         <AiOutlineEllipsis className=" hover:text-stone-400" />
       </div>
-        <div className="mt-2 mb-4">
-       <p className="text-2xl font-bold capitalize pb-3">{artist.name} albums</p> 
-      <div className="carousell flex flex-row justify-start content-center">
-        {artist.albums.map((album, i) => {
-          return (
-            <Cover
-              key={i}
-              id={album.id}
-              name={album.name}
-              artist={artist.name}
-              image={album.image}
-              songs={artist.songs}
-              artist_id={artist.id}
-              duration={album.duration}
-            />
-          );
-        })}
-      </div>
+      <div className="mt-2 mb-4">
+        <p className="text-2xl font-bold capitalize pb-3">
+          {artist.name} albums
+        </p>
+        <div className="carousell flex flex-row justify-start content-center">
+          {artist.albums.map((album, i) => {
+            return (
+              <Cover
+                key={i}
+                id={album.id}
+                name={album.name}
+                artist={artist.name}
+                image={album.image}
+                songs={artist.songs}
+                artist_id={artist.id}
+                duration={album.duration}
+              />
+            );
+          })}
+        </div>
       </div>
       <div className="songs-list">
         <div className="indicator flex flex-row justify-between content-center items-center text-sm border-b pb-2 uppercase">
@@ -72,21 +75,23 @@ const ArtistView: NextPage<Props> = ({ artist }) => {
         <div className="songs">
           {artist.songs.map((song, i) => {
             return (
-              <div
-                className="flex flex-row justify-between content-center items-center g-4 p-3 my-3 hover:bg-[#161616] rounded-md"
-                key={i}
-              >
-                <div className="inline-flex items-center content-center">
-                  <p className="mr-5 text-stone-400">{i + 1}</p>
-                  <p className="text-start">
-                    {song.name} <br />{" "}
-                    <span className="text-sm text-stone-400">
-                      {song.artist}
-                    </span>
-                  </p>
+              <Link href={`/music/song/${song.id}`}>
+                <div
+                  className="flex flex-row justify-between content-center items-center g-4 p-3 my-3 hover:bg-[#161616] rounded-md"
+                  key={i}
+                >
+                  <div className="inline-flex items-center content-center">
+                    <p className="mr-5 text-stone-400">{i + 1}</p>
+                    <p className="text-start">
+                      {song.name} <br />{" "}
+                      <span className="text-sm text-stone-400">
+                        {song.artist}
+                      </span>
+                    </p>
+                  </div>
+                  <p className="text-stone-400">{song.duration}</p>
                 </div>
-                <p className="text-stone-400">{song.duration}</p>
-              </div>
+              </Link>
             );
           })}
         </div>

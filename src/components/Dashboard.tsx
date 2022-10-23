@@ -18,6 +18,9 @@ export const Dashboard = () => {
           <AddArtist />
         </div>
       </div>
+      <div>
+        <button>Read JSON</button>
+      </div>
     </div>
   );
 };
