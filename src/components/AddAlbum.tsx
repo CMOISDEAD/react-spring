@@ -81,6 +81,7 @@ export const AddAlbum = () => {
             label="artist"
             onChange={handleArtist}
             className="w-full text-white border-white"
+            defaultValue=""
           >
             {artists.map((artist, i) => {
               return (

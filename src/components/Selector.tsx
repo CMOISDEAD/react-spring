@@ -18,6 +18,7 @@ export const Selector = ({ artist, iter, callback, title }) => {
         labelId="demo-multiple-chip-label"
         multiple
         value={artist}
+        defaultValue=""
         onChange={callback}
         input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
         renderValue={(selected: typeof iter) => (

@@ -5,10 +5,12 @@ import { setAuthState } from "../store/authSlice";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 
-export default function Login() {
+export default function register() {
   const [user, setUser] = useState({
+    isAdmin: true,
     username: "",
     password: "",
+    email: "exa@mple.com",
   });
 
   const dispatch = useDispatch();
@@ -26,30 +28,31 @@ export default function Login() {
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault;
     axios
-      .post(`http://${process.env.NEXT_PUBLIC_SERVER}/login`, user)
+      .post(`http://${process.env.NEXT_PUBLIC_SERVER}/register`, user)
       .then((res) => {
-        console.log(res.data);
-        dispatch(
-          setAuthState({
-            authState: true,
-            username: res.data.username,
-            playlist: res.data.user_playlist,
-            isAdmin: res.data.isAdmin,
-          })
-        );
+        console.log(res);
         router.push("/");
       })
       .catch((err) => {
         console.log(err);
-        alert("Usuarion no existe");
+        alert("Nombre de usuario ya existe");
       });
+
+    dispatch(
+      setAuthState({
+        authState: true,
+        username: user.username,
+        playlist: [],
+        isAdmin: true,
+      })
+    );
   };
 
   return (
     <div className="h-screen bg-gradient-to-br from-[#161616] to-[#262626]">
       <div className="flex flex-col items-center content-center justify-center backdrop-blur-sm h-full w-full">
         <div className="h-4/6 rounded-md py-4 px-11 bg-[#161616]">
-          <p className="text-2xl font-bold text-center uppercase">Login</p>
+          <p className="text-2xl font-bold text-center uppercase">Register</p>
           <div className="form">
             <div className="pt-6 flex flex-col items-start content-start justify-evenly gap-4">
               <p className="text-sm">username</p>

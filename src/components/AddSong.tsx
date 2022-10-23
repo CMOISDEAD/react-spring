@@ -102,6 +102,7 @@ export const AddSong = () => {
             label="Artist"
             onChange={handleArtist}
             className="w-full text-white border-white"
+            defaultValue=""
           >
             {artists.map((artist, i) => {
               return (
@@ -123,6 +124,7 @@ export const AddSong = () => {
             label="Album"
             onChange={handleAlbum}
             className="w-full text-white border-white"
+            defaultValue=""
           >
             {albums.map((album, i) => {
               return (

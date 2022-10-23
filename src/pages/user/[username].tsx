@@ -7,6 +7,7 @@ import { Dashboard } from "../../components/Dashboard";
 
 const UserView: NextPage = () => {
   const user = useSelector(selectState);
+  console.log(user);
   return (
     <Layout>
       <div className="userinfo mb-5">
@@ -14,10 +15,10 @@ const UserView: NextPage = () => {
           {user.isAdmin ? "Admin" : "User"} : {user.username}
         </p>
         <p className="text-2xl font-bold">{user.username} playlist</p>
-        <div>
+        <div className="grid grid-cols-5 gap-4">
           {user.playlist ? (
             user.playlist.map((song, i) => {
-              return <SongCard {...song} key={i} />;
+              return <SongCard song={song} key={i} show={false} />;
             })
           ) : (
             <div>none</div>

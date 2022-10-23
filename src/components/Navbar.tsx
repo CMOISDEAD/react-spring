@@ -42,7 +42,7 @@ export const Navbar = (): any => {
             <Link href="/login">
               <p className="mx-5 cursor-pointer text-sm">Login</p>
             </Link>
-            <Link href="/login">
+            <Link href="/register">
               <p className="mx-5 cursor-pointer text-sm">Register</p>
             </Link>
           </div>

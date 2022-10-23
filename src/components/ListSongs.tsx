@@ -29,20 +29,7 @@ export const ListSongs = (): any => {
           <SectionHeader title="Top Songs" subtitle="See All" />
           <div className="songs grid grid-cols-5 gap-4">
             {songs.map((song, i) => {
-              return (
-                <SongCard
-                  id={song.id}
-                  name={song.name}
-                  artist={song.artist}
-                  cover={song.cover}
-                  key={i}
-                  album={song.album}
-                  duration={song.duration}
-                  year={song.year}
-                  yt_url={song.yt_url}
-                  artist_id={undefined}
-                />
-              );
+              return <SongCard song={song} key={i} show={true}/>;
             })}
           </div>
         </div>
