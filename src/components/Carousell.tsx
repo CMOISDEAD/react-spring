@@ -6,6 +6,7 @@ import { SectionHeader } from "./SectionHeader";
 
 export const Carousell = (): any => {
   const [albums, setAlbums] = useState<Album[]>([]);
+  const shuffled = albums.sort(() => 0.5 - Math.random());
 
   useEffect(() => {
     axios
@@ -18,9 +19,9 @@ export const Carousell = (): any => {
 
   return (
     <div className="mb-5">
-      <SectionHeader title="TDE Presents" subtitle="Know More" />
+      <SectionHeader title="Editor's Pick" subtitle="Know More" />
       <div className="carousell flex flex-row justify-center content-center">
-        {albums.map((album, i) => {
+        {shuffled.slice(0, 4).map((album, i) => {
           return (
             <Cover
               id={album.id}
