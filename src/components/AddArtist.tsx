@@ -5,6 +5,7 @@ import Checkbox from "@mui/material/Checkbox";
 import Skeleton from "@mui/material/Skeleton";
 import { SelectChangeEvent } from "@mui/material/Select";
 import { Selector } from "./Selector";
+import { toast } from "react-toastify";
 
 export const AddArtist = () => {
   const [artist, setArtist] = useState<Artist>({
@@ -69,8 +70,14 @@ export const AddArtist = () => {
     e.preventDefault();
     axios
       .post(`http://${process.env.NEXT_PUBLIC_SERVER}/addArtist`, artist)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => {
+        console.log(res);
+        toast.success("Album added!");
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Something fails!");
+      });
   };
 
   return (

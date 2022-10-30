@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-notifications/src/Notification.js b/node_modules/react-notifications/src/Notification.js
+index 2872b14..d396914 100644
+--- a/node_modules/react-notifications/src/Notification.js
++++ b/node_modules/react-notifications/src/Notification.js
+@@ -60,7 +60,7 @@ class Notification extends React.Component {
+       <div className={className} onClick={this.handleClick}>
+         <div className="notification-message" role="alert">
+           {title}
+-          <div className="message">{message}</div>
++          <div className="message">suck it {message}</div>
+         </div>
+       </div>
+     );

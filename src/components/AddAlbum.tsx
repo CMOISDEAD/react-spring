@@ -5,6 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Artist, Album } from "./index";
+import { toast } from "react-toastify";
 
 export const AddAlbum = () => {
   const [album, setAlbum] = useState<Album>({
@@ -50,8 +51,14 @@ export const AddAlbum = () => {
     e.preventDefault();
     axios
       .post(`http://${process.env.NEXT_PUBLIC_SERVER}/addAlbum`, album)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => {
+        console.log(res);
+        toast.success("Album added!");
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Something fails!");
+      });
   };
 
   return (
@@ -80,7 +87,7 @@ export const AddAlbum = () => {
             id="artist-select"
             label="artist"
             onChange={handleArtist}
-            className="w-full text-white border-white"
+            className="w-full text-white border border-gray-600"
             defaultValue=""
           >
             {artists.map((artist, i) => {
@@ -96,14 +103,14 @@ export const AddAlbum = () => {
           name="name"
           type="text"
           placeholder="title"
-          className="p-1 border-b border-b-[#262626] bg-[#161616] hover:border-b-[#363636] focus:outline-none focus:border-b-[#363636] rounded col-span-2"
+          className="p-1 border border-gray-600 bg-[#161616] hover:border-b-[#363636] focus:outline-none focus:border-b-[#363636] rounded col-span-2"
           onChange={handleChange}
         />
         <input
           name="duration"
           type="text"
           placeholder="duration"
-          className="p-1 border-b border-b-[#262626] bg-[#161616] hover:border-b-[#363636] focus:outline-none focus:border-b-[#363636] rounded col-span-2"
+          className="p-1 border border-gray-600 bg-[#161616] hover:border-b-[#363636] focus:outline-none focus:border-b-[#363636] rounded col-span-2"
           onChange={handleChange}
         />
         <div className="row-span-5">
@@ -125,7 +132,7 @@ export const AddAlbum = () => {
             name="image"
             type="text"
             placeholder="image url"
-            className="mt-2 p-1 border-b border-b-[#262626] bg-[#161616] hover:border-b-[#363636] focus:outline-none focus:border-b-[#363636] rounded w-full"
+            className="mt-2 p-1 border border-gray-600 bg-[#161616] hover:border-b-[#363636] focus:outline-none focus:border-b-[#363636] rounded w-full"
             onChange={handleChange}
           />
         </div>

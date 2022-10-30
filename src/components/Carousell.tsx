@@ -11,15 +11,13 @@ export const Carousell = (): any => {
   useEffect(() => {
     axios
       .get(`http://${process.env.NEXT_PUBLIC_SERVER}/albums`)
-      .then((res) => {
-        setAlbums(res.data);
-      })
+      .then((res) => setAlbums(res.data))
       .catch((err) => console.log(err));
   }, []);
 
   return (
     <div className="mb-5">
-      <SectionHeader title="Editor's Pick" subtitle="Know More" />
+      <SectionHeader title="Top Albums" subtitle="Know More" />
       <div className="carousell flex flex-row justify-center content-center">
         {shuffled.slice(0, 4).map((album, i) => {
           return (

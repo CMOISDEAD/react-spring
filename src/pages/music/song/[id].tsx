@@ -1,6 +1,9 @@
 import axios from "axios";
+import { Progress } from "flowbite-react";
 import { NextPage } from "next";
+import Head from "next/head";
 import Link from "next/link";
+import { useRef, useState } from "react";
 import ReactPlayer from "react-player";
 import { Song } from "../../../components/index";
 import { Layout } from "../../../components/Layout";
@@ -10,14 +13,55 @@ interface Props {
 }
 
 const SongView: NextPage<Props> = ({ song }) => {
+  const [played, setPlayed] = useState<number>(0);
+  const [data, setData] = useState({
+    playing: true,
+    seeking: false,
+    playedSecond: 0,
+    totalTime: 0,
+  });
+  let playerRef = useRef();
+
   return (
     <Layout>
+      <Head>
+        <title>{song.name}</title>
+        <meta name="description" content={`${song.name} - ${song.artist}`} />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <div className="flex flex-col justify-center content-center items-center">
-        <ReactPlayer url={song.yt_url} className="rounded-md" />
+        <ReactPlayer
+          ref={(player: any) => (playerRef = player)}
+          url={song.yt_url}
+          playing={data.playing}
+          className="rounded-md"
+          onProgress={(e) =>
+            setData({ ...data, playedSecond: e.playedSeconds })
+          }
+          onDuration={(e) => setData({ ...data, totalTime: e })}
+          onEnded={() => console.log("finish")}
+        />
         <p className="text-2xl font-bold">{song.name}</p>
         <Link href={`/music/artist/${song.artist_id}`}>
           <p className="text-sm cursor-pointer">{song.artist}</p>
         </Link>
+      </div>
+      <div className="my-3 w-5/6 justify-center mx-auto">
+        <input
+          type="range"
+          min="0"
+          step="any"
+          className="w-full"
+          value={!data.seeking ? data.playedSecond : played}
+          max={data.totalTime}
+          onMouseDown={() => setData({ ...data, seeking: true })}
+          onMouseUp={(e) => {
+            setData({ ...data, seeking: false });
+            playerRef.seekTo(parseFloat(e.target.value));
+          }}
+          onChange={(e) => setPlayed(parseFloat(e.target.value))}
+        />
       </div>
       <div className="flex flex-row justify-start items-center content-center gap-4">
         <img
