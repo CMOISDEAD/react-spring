@@ -1,40 +1,118 @@
 import axios from "axios";
 import { NextPage } from "next";
-import Link from "next/link";
+import Head from "next/head";
+import { useRef, useState } from "react";
 import ReactPlayer from "react-player";
+import { ToastContainer } from "react-toastify";
 import { Song } from "../../../components/index";
-import { Layout } from "../../../components/Layout";
+import { Navbar } from "../../../components/Navbar";
+import { Player } from "../../../components/Player";
 
 interface Props {
   song: Song;
 }
 
+const contextClass = {
+  success: "bg-[#3636363b] border border-green-500 text-green-500",
+  error: "bg-[#DA1E283b] border border-red-500 text-white",
+  info: "bg-[#FDDC693b] border border-yellow-500 text-white",
+  warning: "bg-orange-400",
+  default: "bg-indigo-600",
+  dark: "bg-white-600 font-gray-300",
+};
+
 const SongView: NextPage<Props> = ({ song }) => {
+  const [played, setPlayed] = useState<number>(0);
+  const [data, setData] = useState({
+    muted: false,
+    playing: true,
+    seeking: false,
+    currentSeconds: 0,
+    duration: 0,
+  });
+  let playerRef: any = useRef();
+
+  const handlePlayPause = () => {
+    setData({
+      ...data,
+      playing: !data.playing,
+    });
+  };
+
+  const handleMute = () => {
+    setData({
+      ...data,
+      muted: !data.muted,
+    });
+  };
+
+  const handleSeekChange = (e: any) => {
+    setPlayed(parseFloat(e.target.value));
+  };
+
   return (
-    <Layout>
-      <div className="flex flex-col justify-center content-center items-center">
-        <ReactPlayer url={song.yt_url} className="rounded-md" />
-        <p className="text-2xl font-bold">{song.name}</p>
-        <Link href={`/music/artist/${song.artist_id}`}>
-          <p className="text-sm cursor-pointer">{song.artist}</p>
-        </Link>
-      </div>
-      <div className="flex flex-row justify-start items-center content-center gap-4">
-        <img
-          src={song.cover}
-          alt={song.name}
-          className="object-cover"
-          width={150}
-          height={150}
+    <div className="h-screen">
+      <Head>
+        <title>{song.name}</title>
+        <meta name="description" content={`${song.name} - ${song.artist}`} />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Navbar />
+      <div className="flex flex-col justify-center content-center items-center h-[70%]">
+        <ReactPlayer
+          ref={(player: any) => (playerRef = player)}
+          width="100%"
+          url={song.yt_url}
+          playing={data.playing}
+          controls={false}
+          muted={data.muted}
+          onProgress={(e) => {
+            if (!data.seeking) {
+              setPlayed(e.played);
+              setData({ ...data, currentSeconds: e.playedSeconds });
+            }
+          }}
+          onDuration={(e) => setData({ ...data, duration: e })}
+          onEnded={() => console.log("finish")}
+          className="rounded-md"
         />
-        <div className="info gap-4">
-          <div className="text-xl font-bold capitalize">{song.album}</div>
-          <div className="text-sm italic">
-            {song.artist} - {song.year}
-          </div>
-        </div>
       </div>
-    </Layout>
+      <Player
+        song={song}
+        handleMute={handleMute}
+        handlePlayPause={handlePlayPause}
+        elapsed={data.duration * played}
+        remaining={data.duration * (1 - played)}
+      >
+        <input
+          type="range"
+          min="0"
+          step="any"
+          max={data.duration}
+          value={!data.seeking ? data.currentSeconds : played}
+          onMouseDown={() => setData({ ...data, seeking: true })}
+          onMouseUp={(e) => {
+            setData({ ...data, seeking: false });
+            const target = e.target as HTMLInputElement;
+            playerRef.seekTo(parseFloat(target.value));
+          }}
+          onChange={handleSeekChange}
+          className="w-full h-1 absolute top-0"
+        />
+      </Player>
+      <ToastContainer
+        toastClassName={({ type }: any) =>
+          `${
+            contextClass[type || "default"]
+          } w-full flex items-center justify-between p-4 max-w-xs rounded-md backdrop-blur-md cursor-pointer my-2 transition-all`
+        }
+        bodyClassName={() => "ml-3 text-sm font-normal"}
+        position="bottom-right"
+        autoClose={3000}
+        hideProgressBar
+        icon={false}
+      />
+    </div>
   );
 };
 

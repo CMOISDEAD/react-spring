@@ -5,9 +5,59 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import { selectState } from "../store/authSlice";
 import { AiOutlineUser } from "react-icons/ai";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 export const Navbar = (): any => {
+  const [query, setQuery] = useState<string>("");
+  const [artist, setArtist] = useState<any[]>([]);
+  const [songs, setSongs] = useState<any[]>([]);
+  const [albums, setAlbums] = useState<any[]>([]);
   const user = useSelector(selectState);
+  const router = useRouter();
+
+  useEffect(() => {
+    axios
+      .get(`http://${process.env.NEXT_PUBLIC_SERVER}/songs`)
+      .then((res) => setSongs(res.data))
+      .catch((err) => console.log(err));
+    axios
+      .get(`http://${process.env.NEXT_PUBLIC_SERVER}/artist`)
+      .then((res) => setArtist(res.data))
+      .catch((err) => console.log(err));
+    axios
+      .get(`http://${process.env.NEXT_PUBLIC_SERVER}/albums`)
+      .then((res) => setAlbums(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  const handleClick = () => {};
+
+  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const target = e.target as HTMLInputElement;
+    setQuery(target.value);
+  };
+
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    let found: any = [...songs, ...artist, ...albums].find(
+      (element) => element.name == query
+    );
+    if (found) {
+      if (found.hasOwnProperty("yt_url")) {
+        router.push(`/music/song/${found.id}`);
+      } else if (found.hasOwnProperty("albums")) {
+        router.push(`/music/artist/${found.id}`);
+      } else {
+        router.push(`/music/album/${found.id}`);
+      }
+    } else {
+      toast.warning(`${query} dont exist!`);
+    }
+  };
 
   return (
     <div className="navbar flex flex-row justify-between items-center content-center p-5">
@@ -55,15 +105,25 @@ export const Navbar = (): any => {
           </div>
         )}
 
-        <div className="search flex flex-row justify-around content-center items-center rounded border border-zinc-900 bg-zinc-800 px-2 hover:border-zinc-500">
-          <AiOutlineSearch />
-          <input
-            className="rounded-lg p-1 bg-zinc-800 focus:outline-none"
-            type="text"
-            placeholder="Search"
-          />
-          <FaMicrophone />
-        </div>
+        <form onSubmit={handleSearch}>
+          <div className="search flex flex-row justify-around content-center items-center rounded border border-zinc-900 bg-zinc-800 px-2 hover:border-zinc-500">
+            <AiOutlineSearch />
+            <input
+              className="border-none rounded-lg p-1 bg-zinc-800 focus:outline-none"
+              type="text"
+              placeholder="Search"
+              onClick={handleClick}
+              onChange={handleChange}
+              list="options"
+            />
+            <datalist id="options">
+              {[...songs, ...albums, ...artist].map((option, i) => (
+                <option value={option.name} key={i} />
+              ))}
+            </datalist>
+            <FaMicrophone />
+          </div>
+        </form>
       </div>
     </div>
   );

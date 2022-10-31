@@ -10,6 +10,7 @@ import {
 import { FiDisc } from "react-icons/fi";
 import axios from "axios";
 import Link from "next/link";
+import Head from "next/head";
 
 interface Props {
   album: Album;
@@ -18,6 +19,11 @@ interface Props {
 const AlbumView: NextPage<Props> = ({ album }) => {
   return (
     <Layout>
+      <Head>
+        <title>{album.name}</title>
+        <meta name="description" content={`${album.name} - ${album.artist}`} />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className="flex flex-row flex-nowrap justify-start content-center items-center gap-4 mb-5">
         <img src={album.image} className="w-3/12 rounded-md" alt="altimage" />
         <div className="flex flex-col justify-between content-center">

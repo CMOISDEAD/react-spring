@@ -10,6 +10,7 @@ import { FiArrowDown, FiArrowUp } from "react-icons/fi";
 export const ListSongs = (): any => {
   const [songs, setSongs] = useState<Song[]>([]);
   const [artists, setArtist] = useState<Artist[]>([]);
+  const shuffled = songs.sort(() => 0.5 - Math.random());
 
   useEffect(() => {
     axios
@@ -25,19 +26,19 @@ export const ListSongs = (): any => {
   }, []);
 
   return (
-    <div className="list mb-10">
+    <div className="list mb-3">
       <div className="flex flex-row gap-4">
         <div className="top-songs w-9/12">
           <SectionHeader title="Top Songs" subtitle="See All" />
-          <div className="songs grid grid-cols-5 gap-4">
-            {songs.map((song, i) => {
+          <div className="w-full inline-flex gap-4 overflow-x-scroll">
+            {shuffled.slice(0, 12).map((song, i) => {
               return <SongCard song={song} key={i} show={true} />;
             })}
           </div>
         </div>
         <div className="top-aritst grow">
           <SectionHeader title="Top Artist" subtitle="See All" />
-          <div className="bg-[#161616] rounded-md mt-2 w-full h-fit px-10 py-2">
+          <div className="bg-[#161616] rounded-md mt-2 w-full h-[82%] px-10 py-2">
             <div className="flex flex-col justify-start content-start items-start">
               {artists.map((artist, i) => {
                 return (

@@ -4,6 +4,7 @@ import { Carousell } from "../components/Carousell";
 import { ListSongs } from "../components/ListSongs";
 import { Layout } from "../components/Layout";
 import { wrapper } from "../store/store";
+import { Playlist } from "../components/Playlist";
 // import { setAuthState } from "../store/authSlice";
 
 const Home: NextPage = () => {
@@ -16,6 +17,7 @@ const Home: NextPage = () => {
       </Head>
       <Carousell />
       <ListSongs />
+      <Playlist />
     </Layout>
   );
 };

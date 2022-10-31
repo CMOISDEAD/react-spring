@@ -8,7 +8,6 @@ import Skeleton from "@mui/material/Skeleton";
 
 const UserView: NextPage = () => {
   const user = useSelector(selectState);
-  console.log(user);
   return (
     <Layout>
       <div className="userinfo mb-5">
@@ -31,7 +30,7 @@ const UserView: NextPage = () => {
           {user.username} playlist
         </p>
         {user.playlist.length > 0 ? (
-          <div className="grid grid-cols-8 gap-4">
+          <div className="w-full inline-flex gap-4 overflow-x-scroll">
             {user.playlist.map((song, i) => {
               return <SongCard song={song} show={false} key={i} />;
             })}

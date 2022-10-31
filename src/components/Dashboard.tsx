@@ -1,10 +1,11 @@
 import { AddAlbum } from "./AddAlbum";
 import { AddArtist } from "./AddArtist";
 import { AddSong } from "./AddSong";
+import { Cluster } from "./Cluster";
 
 export const Dashboard = () => {
   return (
-    <div className="bg-[#262626] rounded-md w-full h-full p-3 my-2">
+    <div className="relative bg-[#262626] rounded-md w-full h-full p-3 my-2">
       <h3 className="text-center font-bold text-2xl uppercase">Dashboard</h3>
       <ul
         className="nav nav-tabs flex flex-col md:flex-row flex-wrap list-none border-b-0 pl-0 mb-4"
@@ -84,6 +85,8 @@ export const Dashboard = () => {
           <AddArtist />
         </div>
       </div>
+      <p>File Upload</p>
+      <Cluster />
     </div>
   );
 };

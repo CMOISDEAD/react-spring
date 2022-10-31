@@ -5,6 +5,7 @@ import Skeleton from "@mui/material/Skeleton";
 import InputLabel from "@mui/material/InputLabel";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import { toast } from "react-toastify";
 
 export const AddSong = () => {
   const [song, setSong] = useState<Song>({
@@ -68,8 +69,14 @@ export const AddSong = () => {
     console.log(song);
     axios
       .post(`http://${process.env.NEXT_PUBLIC_SERVER}/addSong`, song)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => {
+        console.log(res);
+        toast.success("Album added!");
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Something fails!");
+      });
   };
 
   return (
