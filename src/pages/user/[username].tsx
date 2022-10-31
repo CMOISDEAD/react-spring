@@ -8,7 +8,6 @@ import Skeleton from "@mui/material/Skeleton";
 
 const UserView: NextPage = () => {
   const user = useSelector(selectState);
-  console.log(user);
   return (
     <Layout>
       <div className="userinfo mb-5">
