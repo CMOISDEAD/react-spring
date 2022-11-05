@@ -59,7 +59,12 @@ export const Player = ({
       <div className="">{children}</div>
       <div className="bg-[#161616b3] py-2 flex flex-row justify-between content-center items-center justify-items-center px-2">
         <div className="song-info w-1/6 flex flex-row justify-between content-center items-center gap-4">
-          <img src={song.cover} alt={song.name} className="w-16 rounded-sm" />
+          <img
+            src={song.cover}
+            alt={song.name}
+            className="w-16 rounded-sm"
+            layout="fill"
+          />
           <div className="info">
             <p className="text-ellipsis overflow-hidden">{song.name}</p>
             <Link href={`/music/artist/${song.artist_id}`}>

@@ -90,13 +90,14 @@ export const AddSong = () => {
               width={308}
               height={308}
             >
-              <img src="" alt="" />
+              <img src="" alt="" layout="fill" />
             </Skeleton>
           ) : (
-            <img
+            <Image
               src={sArtist && sArtist.image}
               alt="image"
               className="w-fit rounded-md object-cover"
+              layout="fill"
             />
           )}
           <InputLabel id="artist-select-label" className="text-white">
