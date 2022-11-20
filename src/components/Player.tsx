@@ -37,12 +37,15 @@ export const Player = ({
   const [favorite, setFavorite] = useState<boolean>(false);
 
   useEffect(() => {
-    const found = user.playlist.find((element) => element.id === song.id);
-    if (found) {
-      setFavorite(true);
-    } else {
-      setFavorite(false);
+    if (user != null) {
+      const found = user.playlist.find((element) => element.id === song.id);
+      if (found) {
+        setFavorite(true);
+      } else {
+        setFavorite(false);
+      }
     }
+
   }, []);
 
   const handleFavorite = () => {

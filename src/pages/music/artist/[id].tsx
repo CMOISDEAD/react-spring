@@ -107,7 +107,7 @@ const ArtistView: NextPage<Props> = ({ artist }) => {
 };
 
 export const getStaticPaths = async () => {
-  const res = await fetch(`http://${process.env.NEXT_PUBLIC_SERVER}/allArtist`);
+  const res = await fetch(`https://${process.env.NEXT_PUBLIC_SERVER}/allArtist`);
   const songs = await res.json();
 
   const paths = songs.map((artist: string) => ({
@@ -132,7 +132,7 @@ interface Params {
 
 export const getStaticProps = async ({ params }: Params) => {
   const res = await axios.post(
-    `http://${process.env.NEXT_PUBLIC_SERVER}/getArtist`,
+    `https://${process.env.NEXT_PUBLIC_SERVER}/getArtist`,
     params.id
   );
   const artist = await res.data;

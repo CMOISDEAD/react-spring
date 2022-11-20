@@ -82,7 +82,7 @@ const AlbumView: NextPage<Props> = ({ album }) => {
 };
 
 export const getStaticPaths = async () => {
-  const res = await fetch(`http://${process.env.NEXT_PUBLIC_SERVER}/allAlbums`);
+  const res = await fetch(`https://${process.env.NEXT_PUBLIC_SERVER}/allAlbums`);
   const albums = await res.json();
 
   const paths = albums.map((album: string) => ({
@@ -107,7 +107,7 @@ interface Params {
 
 export const getStaticProps = async ({ params }: Params) => {
   const res = await axios.post(
-    `http://${process.env.NEXT_PUBLIC_SERVER}/getAlbum`,
+    `https://${process.env.NEXT_PUBLIC_SERVER}/getAlbum`,
     params.id
   );
   const album = await res.data;

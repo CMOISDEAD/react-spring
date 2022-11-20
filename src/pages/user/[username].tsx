@@ -29,7 +29,7 @@ const UserView: NextPage = () => {
         <p className="text-2xl font-bold capitalize">
           {user.username} playlist
         </p>
-        {user.playlist.length > 0 ? (
+        {user.playlist != null ? (
           <div className="w-full inline-flex gap-4 overflow-x-scroll">
             {user.playlist.map((song, i) => {
               return (
