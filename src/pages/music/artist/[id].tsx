@@ -42,20 +42,18 @@ const ArtistView: NextPage<Props> = ({ artist }) => {
         <p className="text-2xl font-bold capitalize pb-3">
           {artist.name} albums
         </p>
-        <div className="carousell flex flex-row justify-start content-center">
+        <div className="carousell w-full inline-flex gap-4 overflow-x-scroll">
           {artist.albums.map((album, i) => {
             return (
-              <div key={i}>
-                <Cover
-                  id={album.id}
-                  name={album.name}
-                  artist={artist.name}
-                  image={album.image}
-                  songs={artist.songs}
-                  artist_id={artist.id}
-                  duration={album.duration}
-                />
-              </div>
+              <Cover
+                id={album.id}
+                name={album.name}
+                artist={artist.name}
+                image={album.image}
+                songs={artist.songs}
+                artist_id={artist.id}
+                duration={album.duration}
+              />
             );
           })}
         </div>

@@ -107,7 +107,7 @@ export const Player = ({
             </time>
           </div>
         </div>
-        <div className="options text-1xl inline-flex gap-4">
+        <div className="options text-1xl inline-flex gap-4 responsive-hide">
           <div className="hover:text-stone-400">
             <FaMicrophone />
           </div>

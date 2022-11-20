@@ -28,7 +28,7 @@ const AlbumView: NextPage<Props> = ({ album }) => {
         <img src={album.image} className="w-3/12 rounded-md" alt="altimage" />
         <div className="flex flex-col justify-between content-center">
           <p className="text-sm">Top Dawg Entertainment</p>
-          <p className="text-6xl font-bold py-24">{album.name}</p>
+          <p className="text-5xl font-bold py-24">{album.name}</p>
           <Link
             className="text-sm font-bold"
             href={`/music/artist/${album.artist_id}`}
