@@ -10,7 +10,7 @@ export const Cover = ({ id, image, name, artist }: Album): any => {
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
-        className="card rounded-md w-2/6 bg-cover bg-center mx-3 border border-zinc-900 hover:border-zinc-500 cursor-pointer"
+        className="card rounded-md w-2/6 bg-cover bg-center mx-3 border border-zinc-900 hover:border-zinc-500 cursor-pointer responsive-album"
       >
         <div className="info pt-36 pr-14 pl-2 pb-2">
           <p className="title font-bold">{name}</p>

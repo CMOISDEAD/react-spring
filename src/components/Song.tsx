@@ -40,7 +40,7 @@ export const SongCard = ({ song, show }: Props) => {
   };
 
   return (
-    <div className="min-w-[20%] max-w-[20%] h-auto rounded-md bg-[#161616] p-2 my-2 border border-zinc-900 hover:border-zinc-500 relative">
+    <div className="responsive-card min-w-[30%] max-w-[30%] h-auto rounded-md bg-[#161616] p-2 my-2 border border-zinc-900 hover:border-zinc-500 relative">
       <Link href={`/music/song/${id}`}>
         <img src={cover} alt="Album cover" className="rounded-sm w-full" />
       </Link>

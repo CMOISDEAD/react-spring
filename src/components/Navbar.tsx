@@ -33,7 +33,7 @@ export const Navbar = (): any => {
       .catch((err) => console.log(err));
   }, []);
 
-  const handleClick = () => {};
+  const handleClick = () => { };
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -70,21 +70,24 @@ export const Navbar = (): any => {
             <Logo className="mr-2 text-2xl" /> Music
           </div>
         </Link>
-        <a className="mx-4 font-semibold hover:text-zinc-300" href="/you">
-          For you
-        </a>
-        <a className="mx-4 hover:text-zinc-300" href="/library">
-          Library
-        </a>
-        <a className="mx-4 hover:text-zinc-300" href="/browse">
-          Browse
-        </a>
-        <a
-          className="mx-4 hover:text-zinc-300 cursor-not-allowed"
-          href="/radio"
-        >
-          Radio
-        </a>
+        <div className="responsive-hide">
+
+          <a className="mx-4 font-semibold hover:text-zinc-300" href="/you">
+            For you
+          </a>
+          <a className="mx-4 hover:text-zinc-300" href="/library">
+            Library
+          </a>
+          <a className="mx-4 hover:text-zinc-300" href="/browse">
+            Browse
+          </a>
+          <a
+            className="mx-4 hover:text-zinc-300 cursor-not-allowed"
+            href="/radio"
+          >
+            Radio
+          </a>
+        </div>
       </div>
       <div className="flex flex-row justify-around content-center items-center">
         {!user.authState ? (
@@ -106,7 +109,7 @@ export const Navbar = (): any => {
         )}
 
         <form onSubmit={handleSearch}>
-          <div className="search flex flex-row justify-around content-center items-center rounded border border-zinc-900 bg-zinc-800 px-2 hover:border-zinc-500">
+          <div className="search responsive-hide flex flex-row justify-around content-center items-center rounded border border-zinc-900 bg-zinc-800 px-2 hover:border-zinc-500">
             <AiOutlineSearch />
             <input
               className="border-none rounded-lg p-1 bg-zinc-800 focus:outline-none"

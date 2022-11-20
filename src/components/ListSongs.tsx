@@ -28,7 +28,7 @@ export const ListSongs = (): any => {
   return (
     <div className="list mb-3">
       <div className="flex flex-row gap-4">
-        <div className="top-songs w-9/12">
+        <div className="top-songs w-full">
           <SectionHeader title="Top Songs" subtitle="See All" />
           <div className="w-full inline-flex gap-4 overflow-x-scroll">
             {shuffled.slice(0, 12).map((song, i) => {
@@ -36,7 +36,7 @@ export const ListSongs = (): any => {
             })}
           </div>
         </div>
-        <div className="top-aritst grow">
+        <div className="top-aritst grow responsive-hide">
           <SectionHeader title="Top Artist" subtitle="See All" />
           <div className="bg-[#161616] rounded-md mt-2 w-full h-[82%] px-10 py-2">
             <div className="flex flex-col justify-start content-start items-start">

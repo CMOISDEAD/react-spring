@@ -18,7 +18,7 @@ export const Carousell = (): any => {
   return (
     <div className="mb-5">
       <SectionHeader title="Top Albums" subtitle="Know More" />
-      <div className="carousell flex flex-row justify-center content-center">
+      <div className="carousell w-full inline-flex gap-4 overflow-x-scroll">
         {shuffled.slice(0, 4).map((album, i) => {
           return (
             <Cover

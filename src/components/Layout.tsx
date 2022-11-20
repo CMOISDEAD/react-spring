@@ -19,7 +19,7 @@ export const Layout: NextPage<Props> = ({ children }) => {
   return (
     <>
       <Navbar />
-      <div className="container mx-auto">
+      <div className="container mx-auto responsive-layout">
         {children}
         <ToastContainer
           toastClassName={({ type }: any) =>

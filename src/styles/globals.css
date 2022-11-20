@@ -33,3 +33,19 @@ a {
     );
   }
 }
+
+@media only screen and (max-width: 900px) {
+ .responsive-hide {
+   display: none;
+ } 
+ .responsive-card {
+   max-width: 50%;
+   min-width: 50%;
+ }
+ .responsive-layout {
+   padding: 0 2vw;
+ }
+ .responsive-album {
+   padding-right: 90vw;
+ }
+}

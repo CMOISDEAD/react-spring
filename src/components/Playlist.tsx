@@ -4,7 +4,7 @@ export const Playlist = () => {
   return (
     <>
       <SectionHeader title="Playlist" subtitle="See All" />
-      <div className="w-full inline-flex gap-4">
+      <div className="w-full inline-flex gap-4 overflow-x-scroll">
         {[
           "https://i.scdn.co/image/ab67706f00000003b1496df70548b3e43c25b0d4",
           "https://i.scdn.co/image/ab67706f0000000375766e3912cd4f034ec73ea3",
@@ -16,7 +16,7 @@ export const Playlist = () => {
             src={playlist}
             alt="Nas"
             key={i}
-            className="w-[19%] rounded-md my-2"
+            className="w-6/12 rounded-md my-2"
           />
         ))}
       </div>
