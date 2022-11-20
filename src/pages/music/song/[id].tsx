@@ -103,7 +103,8 @@ const SongView: NextPage<Props> = ({ song }) => {
       <ToastContainer
         toastClassName={({ type }: any) =>
           `${
-            contextClass[type || "default"]
+          // contextClass[type || "default"]
+          type
           } w-full flex items-center justify-between p-4 max-w-xs rounded-md backdrop-blur-md cursor-pointer my-2 transition-all`
         }
         bodyClassName={() => "ml-3 text-sm font-normal"}

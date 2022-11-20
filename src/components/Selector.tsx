@@ -6,7 +6,7 @@ import Chip from "@mui/material/Chip";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Box from "@mui/material/Box";
 
-export const Selector = ({ artist, iter, callback, title }) => {
+export const Selector = ({ artist, iter, callback, title }: any) => {
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
 

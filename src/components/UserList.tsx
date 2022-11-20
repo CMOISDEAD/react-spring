@@ -1,7 +1,7 @@
 import { SongCard } from "./Song";
 import { Song } from "./index";
 
-export const UserList = ({ playlist }) => {
+export const UserList = ({ playlist }: any) => {
   return (
     <div
       id="carouselExampleControls"
