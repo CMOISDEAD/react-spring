@@ -13,11 +13,11 @@ export const UserList = ({ playlist }) => {
           {playlist.map((song: Song, i: number) => {
             return (
               <div
-                className={`carousel-item ${
-                  i == 0 && "active"
-                } relative float-left`}
+                key={i}
+                className={`carousel-item ${i == 0 && "active"
+                  } relative float-left`}
               >
-                <SongCard song={song} show={false} key={i} />
+                <SongCard song={song} show={false} />
               </div>
             );
           })}

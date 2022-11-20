@@ -5,7 +5,7 @@ import { setAuthState } from "../store/authSlice";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 
-export default function register() {
+export default function Register() {
   const [user, setUser] = useState({
     isAdmin: true,
     username: "",
