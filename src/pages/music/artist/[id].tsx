@@ -45,16 +45,17 @@ const ArtistView: NextPage<Props> = ({ artist }) => {
         <div className="carousell flex flex-row justify-start content-center">
           {artist.albums.map((album, i) => {
             return (
-              <Cover
-                key={i}
-                id={album.id}
-                name={album.name}
-                artist={artist.name}
-                image={album.image}
-                songs={artist.songs}
-                artist_id={artist.id}
-                duration={album.duration}
-              />
+              <div key={i}>
+                <Cover
+                  id={album.id}
+                  name={album.name}
+                  artist={artist.name}
+                  image={album.image}
+                  songs={artist.songs}
+                  artist_id={artist.id}
+                  duration={album.duration}
+                />
+              </div>
             );
           })}
         </div>
@@ -75,23 +76,28 @@ const ArtistView: NextPage<Props> = ({ artist }) => {
         <div className="songs">
           {artist.songs.map((song, i) => {
             return (
-              <Link href={`/music/song/${song.id}`}>
-                <div
-                  className="flex flex-row justify-between content-center items-center g-4 p-3 my-3 hover:bg-[#161616] rounded-md"
-                  key={i}
-                >
-                  <div className="inline-flex items-center content-center">
-                    <p className="mr-5 text-stone-400">{i + 1}</p>
-                    <p className="text-start">
-                      {song.name} <br />{" "}
-                      <span className="text-sm text-stone-400">
-                        {song.artist}
-                      </span>
-                    </p>
+              <div
+                key={i}
+              >
+
+                <Link href={`/music/song/${song.id}`}>
+                  <div
+                    className="flex flex-row justify-between content-center items-center g-4 p-3 my-3 hover:bg-[#161616] rounded-md"
+                  >
+                    <div className="inline-flex items-center content-center">
+                      <p className="mr-5 text-stone-400">{i + 1}</p>
+                      <p className="text-start">
+                        {song.name} <br />{" "}
+                        <span className="text-sm text-stone-400">
+                          {song.artist}
+                        </span>
+                      </p>
+                    </div>
+                    <p className="text-stone-400">{song.duration}</p>
                   </div>
-                  <p className="text-stone-400">{song.duration}</p>
-                </div>
-              </Link>
+                </Link>
+
+              </div>
             );
           })}
         </div>

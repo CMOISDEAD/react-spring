@@ -63,7 +63,6 @@ export const Player = ({
             src={song.cover}
             alt={song.name}
             className="w-16 rounded-sm"
-            layout="fill"
           />
           <div className="info">
             <p className="text-ellipsis overflow-hidden">{song.name}</p>

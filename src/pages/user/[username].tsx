@@ -32,7 +32,11 @@ const UserView: NextPage = () => {
         {user.playlist.length > 0 ? (
           <div className="w-full inline-flex gap-4 overflow-x-scroll">
             {user.playlist.map((song, i) => {
-              return <SongCard song={song} show={false} key={i} />;
+              return (
+                <div key={i}>
+                  <SongCard song={song} show={false} />;
+                </div>
+              )
             })}
           </div>
         ) : (

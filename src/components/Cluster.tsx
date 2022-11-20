@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Modal } from "./Modal";
 import { sleep } from "../utils/sleep";
+import { Router } from "next/router";
 
 interface Structure<T> {
   path: string;
@@ -46,25 +47,25 @@ export const Cluster = () => {
 
   const handleUpload = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const { songs, albums, artists } = data;
+    const { songs, albums, artists }: Routes = data as Routes;
     for (let song of songs.data) {
       request(songs.path, song);
       console.table(song);
-      setCurrent(song);
+      setCurrent(song as any);
       setShow(true);
       await sleep(1000);
     }
     for (let artist of artists.data) {
       request(artists.path, artist);
       console.table(artist);
-      setCurrent(artist);
+      setCurrent(artist as any);
       setShow(true);
       await sleep(1000);
     }
     for (let album of albums.data) {
       request(albums.path, album);
       console.table(album);
-      setCurrent(album);
+      setCurrent(album as any);
       setShow(true);
       await sleep(1000);
     }

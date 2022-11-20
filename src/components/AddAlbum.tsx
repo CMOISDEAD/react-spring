@@ -88,11 +88,10 @@ export const AddAlbum = () => {
             label="artist"
             onChange={handleArtist}
             className="w-full text-white border border-gray-600"
-            defaultValue=""
           >
             {artists.map((artist, i) => {
               return (
-                <MenuItem value={artist} key={i}>
+                <MenuItem value={artist as any} key={i}>
                   {artist.name}
                 </MenuItem>
               );

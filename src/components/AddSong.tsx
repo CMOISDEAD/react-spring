@@ -90,14 +90,13 @@ export const AddSong = () => {
               width={308}
               height={308}
             >
-              <img src="" alt="" layout="fill" />
+              <img src="" alt="" />
             </Skeleton>
           ) : (
-            <Image
+            <img
               src={sArtist && sArtist.image}
               alt="image"
               className="w-fit rounded-md object-cover"
-              layout="fill"
             />
           )}
           <InputLabel id="artist-select-label" className="text-white">
@@ -110,11 +109,10 @@ export const AddSong = () => {
             label="Artist"
             onChange={handleArtist}
             className="w-full text-white border-white"
-            defaultValue=""
           >
             {artists.map((artist, i) => {
               return (
-                <MenuItem value={artist} key={i}>
+                <MenuItem value={artist as any} key={i}>
                   {artist.name}
                 </MenuItem>
               );
@@ -132,11 +130,10 @@ export const AddSong = () => {
             label="Album"
             onChange={handleAlbum}
             className="w-full text-white border-white"
-            defaultValue=""
           >
             {albums.map((album, i) => {
               return (
-                <MenuItem value={album} key={i}>
+                <MenuItem value={album as any} key={i}>
                   {album.name}
                 </MenuItem>
               );
