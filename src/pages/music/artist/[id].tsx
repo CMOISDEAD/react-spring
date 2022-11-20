@@ -46,6 +46,7 @@ const ArtistView: NextPage<Props> = ({ artist }) => {
           {artist.albums.map((album, i) => {
             return (
               <Cover
+                key={i}
                 id={album.id}
                 name={album.name}
                 artist={artist.name}

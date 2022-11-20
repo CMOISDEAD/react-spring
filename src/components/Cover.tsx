@@ -3,7 +3,7 @@ import { Album } from "./index";
 
 export const Cover = ({ id, image, name, artist }: Album): any => {
   return (
-    <Link href={`/music/album/${id}`}>
+    <Link href={`/music/album/${id}`} key={id}>
       <div
         style={{
           backgroundImage: `url(${image})`,
