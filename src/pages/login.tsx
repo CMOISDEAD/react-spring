@@ -28,7 +28,7 @@ export default function Login() {
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault;
     axios
-      .post(`http://${process.env.NEXT_PUBLIC_SERVER}/login`, user)
+      .post(`https://${process.env.NEXT_PUBLIC_SERVER}/login`, user)
       .then((res) => {
         console.log(res.data);
         dispatch(

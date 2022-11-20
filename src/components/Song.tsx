@@ -19,7 +19,7 @@ export const SongCard = ({ song, show }: Props) => {
   const handleAdd = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     axios
-      .post(`http://${process.env.NEXT_PUBLIC_SERVER}/addUserList`, {
+      .post(`https://${process.env.NEXT_PUBLIC_SERVER}/addUserList`, {
         song,
         name: user.username,
       })

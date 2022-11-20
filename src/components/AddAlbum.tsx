@@ -22,7 +22,7 @@ export const AddAlbum = () => {
 
   useEffect(() => {
     axios
-      .get(`http://${process.env.NEXT_PUBLIC_SERVER}/artist`)
+      .get(`https://${process.env.NEXT_PUBLIC_SERVER}/artist`)
       .then((res) => setArtist(res.data))
       .catch((err) => console.log(err));
   }, []);
@@ -50,7 +50,7 @@ export const AddAlbum = () => {
   const handleAdd = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     axios
-      .post(`http://${process.env.NEXT_PUBLIC_SERVER}/addAlbum`, album)
+      .post(`https://${process.env.NEXT_PUBLIC_SERVER}/addAlbum`, album)
       .then((res) => {
         console.log(res);
         toast.success("Album added!");

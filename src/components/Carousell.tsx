@@ -10,7 +10,7 @@ export const Carousell = (): any => {
 
   useEffect(() => {
     axios
-      .get(`http://${process.env.NEXT_PUBLIC_SERVER}/albums`)
+      .get(`https://${process.env.NEXT_PUBLIC_SERVER}/albums`)
       .then((res) => setAlbums(res.data))
       .catch((err) => console.log(err));
   }, []);

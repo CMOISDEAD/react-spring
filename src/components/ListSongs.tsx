@@ -14,13 +14,13 @@ export const ListSongs = (): any => {
 
   useEffect(() => {
     axios
-      .get(`http://${process.env.NEXT_PUBLIC_SERVER}/songs`)
+      .get(`https://${process.env.NEXT_PUBLIC_SERVER}/songs`)
       .then((res) => {
         setSongs(res.data);
       })
       .catch((err) => console.log(err));
     axios
-      .get(`http://${process.env.NEXT_PUBLIC_SERVER}/artist`)
+      .get(`https://${process.env.NEXT_PUBLIC_SERVER}/artist`)
       .then((res) => setArtist(res.data))
       .catch((err) => console.log(err));
   }, []);

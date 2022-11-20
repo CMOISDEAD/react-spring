@@ -5,7 +5,7 @@ import { setAuthState } from "../store/authSlice";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 
-export default function Register() {
+export default function Registers() {
   const [user, setUser] = useState({
     isAdmin: true,
     username: "",
@@ -28,7 +28,7 @@ export default function Register() {
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault;
     axios
-      .post(`http://${process.env.NEXT_PUBLIC_SERVER}/register`, user)
+      .post(`https://${process.env.NEXT_PUBLIC_SERVER}/register`, user)
       .then((res) => {
         console.log(res);
         router.push("/");
