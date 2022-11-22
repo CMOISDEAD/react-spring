@@ -1,26 +1,15 @@
 {
   "artists": {
-    "path": "http://192.168.1.14:8080/addArtist",
+    "path": "https://java-player.fly.dev/addArtist",
     "data": []
   },
   "albums": {
-    "path": "http://192.168.1.14:8080/addAlbum",
+    "path": "https://java-player.fly.dev/addAlbum",
     "data": []
   },
   "songs": {
-    "path": "http://192.168.1.14:8080/addSong",
+    "path": "https://java-player.fly.dev/addSong",
     "data": [
-      {
-        "id": "",
-        "name": "DNA.",
-        "album": "DAMN.",
-        "artist": "Kendrick Lamar",
-        "cover": "https://i.scdn.co/image/ab67616d0000b2738b52c6b9bc4e43d873869699",
-        "duration": 3,
-        "year": 2017,
-        "yt_url": "https://www.youtube.com/watch?v=Fb3j_yuFh1s",
-        "artist_id": "82983423-bf49-498a-bf81-8e1759332213"
-      },
       {
         "id": "",
         "name": "YAH.",
