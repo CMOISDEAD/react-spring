@@ -38,11 +38,13 @@ export const Player = ({
 
   useEffect(() => {
     if (user != null) {
-      const found = user.playlist.find((element) => element.id === song.id);
-      if (found) {
-        setFavorite(true);
-      } else {
-        setFavorite(false);
+      if (user.playlist != null) {
+        const found = user.playlist.find((element) => element.id === song.id);
+        if (found) {
+          setFavorite(true);
+        } else {
+          setFavorite(false);
+        }
       }
     }
 
