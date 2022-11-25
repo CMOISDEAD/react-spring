@@ -16,7 +16,7 @@ export const Playlist = () => {
             src={playlist}
             alt="Nas"
             key={i}
-            className="w-6/12 rounded-md my-2"
+            className="w-[30%] rounded-md"
           />
         ))}
       </div>
